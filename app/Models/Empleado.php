@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Sucursal;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Empleado extends Model
 {
@@ -18,4 +20,12 @@ class Empleado extends Model
         'id_administrador',
         'id_sucursal',
     ];
+
+    public function user(){
+        return $this->hasOne(User::class);
+    }
+
+    public function sucursal(){
+        return $this->hasOne(Sucursal::class);
+    }
 }
