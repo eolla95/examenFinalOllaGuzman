@@ -14,7 +14,8 @@ class SucursalFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nombre' => $this->faker->city,
+            'direccion' => $this->faker->paragraph(),
         ];
     }
 }
