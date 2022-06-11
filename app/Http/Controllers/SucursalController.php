@@ -8,13 +8,23 @@ use Illuminate\Http\Request;
 class SucursalController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return Sucursal::get();
     }
 
     /**
@@ -25,7 +35,8 @@ class SucursalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sucursal = new Sucursal;
+        $sucursal->create($request->all());
     }
 
     /**
@@ -36,7 +47,7 @@ class SucursalController extends Controller
      */
     public function show(Sucursal $sucursal)
     {
-        //
+        return $sucursal;
     }
 
     /**
@@ -48,7 +59,7 @@ class SucursalController extends Controller
      */
     public function update(Request $request, Sucursal $sucursal)
     {
-        //
+        $sucursal->update($request->all());
     }
 
     /**
@@ -59,6 +70,6 @@ class SucursalController extends Controller
      */
     public function destroy(Sucursal $sucursal)
     {
-        //
+        $sucursal->delete();
     }
 }

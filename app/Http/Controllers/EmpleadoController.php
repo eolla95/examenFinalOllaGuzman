@@ -8,13 +8,23 @@ use Illuminate\Http\Request;
 class EmpleadoController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return Empleado::get();
     }
 
     /**
@@ -25,7 +35,8 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $empleado = new Empleado;
+        $empleado->create($request->all());
     }
 
     /**
@@ -36,7 +47,7 @@ class EmpleadoController extends Controller
      */
     public function show(Empleado $empleado)
     {
-        //
+        return $empleado;
     }
 
     /**
@@ -48,7 +59,7 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, Empleado $empleado)
     {
-        //
+        $empleado->update($request->all());
     }
 
     /**
@@ -59,6 +70,6 @@ class EmpleadoController extends Controller
      */
     public function destroy(Empleado $empleado)
     {
-        //
+        $empleado->delete();
     }
 }
