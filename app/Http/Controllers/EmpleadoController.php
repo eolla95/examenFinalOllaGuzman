@@ -39,7 +39,9 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         $empleado = new Empleado;
-        $empleado->create($request->all());
+        $data = $request->all();
+        $data['id_administrador'] = auth()->user()->id;
+        $empleado->create($data);
     }
 
     /**

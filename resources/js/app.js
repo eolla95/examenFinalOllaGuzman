@@ -20,7 +20,7 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 
-Vue.component('usuario-component', require('./components/UsuarioComponent.vue').default);
+//Vue.component('usuario-component', require('./components/UsuarioComponent.vue').default);
 Vue.component('empleado', require('./components/EmpleadoComponent.vue').default);
 
 /**

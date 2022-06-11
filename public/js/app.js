@@ -5819,12 +5819,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 3:
                 res = _context.sent;
                 _this.sucursals = res.data;
-                /*
-                if (this.sucursals.length > 0) {
-                    this.empleado.id_sucursal = res.data[0].id;
-                }
-                */
-
                 _this.loading = false;
 
               case 6:
@@ -5985,7 +5979,7 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+//Vue.component('usuario-component', require('./components/UsuarioComponent.vue').default);
 
 Vue.component('empleado', (__webpack_require__(/*! ./components/EmpleadoComponent.vue */ "./resources/js/components/EmpleadoComponent.vue")["default"]));
 /**
@@ -31380,7 +31374,7 @@ var render = function () {
                 _vm._l(_vm.sucursals, function (sucursal) {
                   return _c(
                     "option",
-                    { key: sucursal.id, domProps: { value: sucursal.nombre } },
+                    { key: sucursal.id, domProps: { value: sucursal.id } },
                     [
                       _vm._v(
                         "\n                            " +

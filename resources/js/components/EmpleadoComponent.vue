@@ -76,7 +76,7 @@
                         <select v-model="empleado.id_sucursal" class="form-select">
                             <option v-for="sucursal in sucursals"
                                 :key="sucursal.id"
-                                :value="sucursal.nombre"
+                                :value="sucursal.id"
                             >
                                 {{sucursal.nombre}}
                             </option>
@@ -122,11 +122,6 @@ export default {
             this.loading = true;
             const res = await axios.get('/sucursal');
             this.sucursals = res.data;
-            /*
-            if (this.sucursals.length > 0) {
-                this.empleado.id_sucursal = res.data[0].id;
-            }
-            */
             this.loading = false;
         },
         async listar() {
