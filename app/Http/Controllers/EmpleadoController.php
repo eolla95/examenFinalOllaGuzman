@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use auth;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        return Empleado::get();
+        $user = auth()->user();
+        if(!empty($user))
+        return Empleado::all()->where('id_administrador', $user->id);
     }
 
     /**

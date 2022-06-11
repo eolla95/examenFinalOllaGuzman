@@ -21,11 +21,11 @@ class Empleado extends Model
         'id_sucursal',
     ];
 
-    public function user(){
+    public function User(){
         return $this->hasOne(User::class);
     }
 
-    public function sucursal(){
+    public function Sucursal(){
         return $this->hasOne(Sucursal::class);
     }
 }
