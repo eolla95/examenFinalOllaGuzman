@@ -14,7 +14,13 @@ class EmpleadoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nombre' => $this->faker->name,
+            'edad' => $this->faker->numberBetween(18, 99),
+            'sueldo_base' => $this->faker->numberBetween(350, 800),
+            'direccion' => $this->faker->city,
+            'foto'=> $this->faker->imageUrl($width = 200, $height = 200),
+            'id_administrador'=> 1,
+            'id_sucursal'=> 1,
         ];
     }
 }

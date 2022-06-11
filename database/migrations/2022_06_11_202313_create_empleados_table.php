@@ -21,7 +21,7 @@ class CreateEmpleadosTable extends Migration
             $table->text('direccion');
             $table->text('foto');
             $table->foreignId('id_administrador')->references('id')->on('users');
-            $table->foreignId('id_sucursal')->references('id')->on('sucursales');
+            $table->foreignId('id_sucursal')->references('id')->on('sucursals');
             $table->timestamps();
         });
     }
