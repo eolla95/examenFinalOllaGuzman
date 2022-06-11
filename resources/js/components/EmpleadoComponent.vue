@@ -6,7 +6,7 @@
                     <div class="card-header bg-primary text-white pt-2 pb-0 px-3">
                         <h6 class="d-flex justify-content-between align-items-center">
                             Gestionar empleados
-                            <a href="javascript:void(0);"  @click="modificar=false; abrirModal();" class="btn btn-light btn-sm float-end">Ingresar nuevo empleadoo</a>
+                            <a href="javascript:void(0);"  @click="modificar=false; abrirModal();" class="btn btn-light btn-sm float-end">Ingresar nuevo empleado</a>
                         </h6>
                     </div>
                     <div class="card-body">
@@ -43,7 +43,6 @@
                 </div>
             </div>
         </div>
-        <!--
         <div class="modal" :class="{mostrar: modal}">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -53,16 +52,36 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <label for="name">Nombre</label>
-                        <input v-model="empleado.name" type="text" class="form-control" id="name" placeholder="Nombre del Articulo">
+                        <label for="nombre">Nombre</label>
+                        <input v-model="empleado.nombre" type="text" class="form-control" id="nombre" placeholder="Nombre del empleado">
                     </div>
                     <div class="my-4">
-                        <label for="description">descripcion</label>
-                        <input v-model="empleado.description" type="text" class="form-control" id="description" placeholder="Descripcion del Articulo">
+                        <label for="edad">Edad</label>
+                        <input v-model="empleado.edad" type="number" class="form-control" id="edad" placeholder="Descripcion del empleado">
                     </div>
                     <div class="my-4">
-                        <label for="stock">stock</label>
-                        <input v-model="empleado.stock" type="number" class="form-control" id="stock" placeholder="Stock del Articulo">
+                        <label for="sueldo_base">Sueldo base</label>
+                        <input v-model="empleado.sueldo_base" type="number" class="form-control" id="sueldo_base" placeholder="Sueldo base del empleado">
+                    </div>
+                    <div class="my-4">
+                        <label for="direccion">Direccion</label>
+                        <input v-model="empleado.direccion" type="number" class="form-control" id="direccion" placeholder="Direccion del empleado">
+                    </div>
+                    <div class="my-4">
+                        <label for="foto">Foto</label>
+                        <input v-model="empleado.foto" type="number" class="form-control" id="foto" placeholder="foto del empleado">
+                    </div>
+                    <div class="my-4">
+                        <label>Sucursal</label>
+                        <select v-model="empleado.nombre" class="form-select">
+                            <option
+                                v-for="sucursal in sucursals"
+                                :key="sucursal.id"
+                                :value="sucursal.nombre"
+                            >
+                                {{ sucursal.nombre }}
+                            </option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -72,7 +91,6 @@
                 </div>
             </div>
         </div>
-        -->
     </div>
 </template>
 
@@ -80,7 +98,6 @@
 export default {
     data() {
         return {
-            /*
             empleado:{
                 nombre:'',
                 edad:18,
@@ -92,11 +109,25 @@ export default {
             modificar:true,
             modal:0,
             tituloModal:'',
-            */
             empleados: [],
+            sucursals: [],
         };
     },
+    mounted() {
+        this.initialize();
+    },
     methods: {
+        async initialize() {
+            this.loading = true;
+            res = await axios.get('/sucursal');
+            this.sucursals = res.data.sucursals;
+
+            if (this.sucursals.length > 0) {
+                this.empleado.nombre = res.data.sucursals[0].nombre;
+            }
+
+            this.loading = false;
+        },
         async listar() {
             const res = await axios.get('/empleado');
             this.empleados = res.data;
@@ -116,21 +147,25 @@ export default {
         },
         abrirModal(data={}){
             this.modal=1;
-        /*
             if(this.modificar){
                 this.id=data.id;
-                this.tituloModal="Modificar empleadoo";
-                this.empleado.name=data.name;
-                this.empleado.description=data.description;
-                this.empleado.stock=data.stock;
+                this.tituloModal="Modificar empleado";
+                this.empleado.nombre=data.nombre;
+                this.empleado.edad=data.edad;
+                this.empleado.sueldo_base=data.sueldo_base;
+                this.empleado.direccion=data.direccion;
+                this.empleado.foto=data.foto;
+                this.empleado.id_sucursal=data.id_sucursal;
             }else{
                 this.id=0;
-                this.tituloModal="Crear empleadoo";
-                this.empleado.name='';
-                this.empleado.description='';
-                this.empleado.stock=1;
+                this.tituloModal="Crear empleado";
+                this.empleado.nombre='';
+                this.empleado.edad=18;
+                this.empleado.sueldo_base='';
+                this.empleado.direccion='';
+                this.empleado.foto='';
+                this.empleado.id_sucursal='';
             }
-        */
         },
         cerrarModal(){
             this.modal=0;
