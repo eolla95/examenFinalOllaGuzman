@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
+use App\Models\Sucursal;
+use App\Models\Empleado;
+use App\Models\User;
+
 
 use function Ramsey\Uuid\v1;
 
@@ -16,10 +20,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(1)->create();
-        \App\Models\Sucursal::factory(10)->create();
-        \App\Models\Empleado::factory(10)->create();
-        
         $this->call([RoleSeeder::class]);
+        
+        User::create([
+            'name' => 'Administrador',
+            'email' => 'admin@itca.edu.sv',
+            'password'=> bcrypt('123456')
+        ])->assignRole('Admin');
+
+        User::create([
+            'name' => 'Enlace',
+            'email' => 'enlace@itca.edu.sv',
+            'password'=> bcrypt('123456')
+        ])->assignRole('Enlace');
+        
+        Sucursal::factory(10)->create();
+        Empleado::factory(10)->create();
     }
 }
