@@ -5788,7 +5788,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         edad: 18,
         sueldo_base: 0,
         direccion: '',
-        foto: ''
+        foto: '',
+        id_sucursal: ''
       },
       id: 0,
       modificar: true,
@@ -5806,6 +5807,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var res;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -5816,15 +5818,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 res = _context.sent;
-                _this.sucursals = res.data.sucursals;
-
-                if (_this.sucursals.length > 0) {
-                  _this.empleado.nombre = res.data.sucursals[0].nombre;
+                _this.sucursals = res.data;
+                /*
+                if (this.sucursals.length > 0) {
+                    this.empleado.id_sucursal = res.data[0].id;
                 }
+                */
 
                 _this.loading = false;
 
-              case 7:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -5885,7 +5888,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-        var _res, _res2;
+        var res, _res;
 
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) {
@@ -5900,7 +5903,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.put('/empleado/' + _this4.id, _this4.empleado);
 
               case 3:
-                _res = _context4.sent;
+                res = _context4.sent;
                 _context4.next = 9;
                 break;
 
@@ -5909,7 +5912,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post('/empleado/', _this4.empleado);
 
               case 8:
-                _res2 = _context4.sent;
+                _res = _context4.sent;
 
               case 9:
                 _this4.cerrarModal();
@@ -31092,7 +31095,7 @@ var render = function () {
                         },
                       },
                     },
-                    [_vm._v("Ingresar nuevo empleadoo")]
+                    [_vm._v("Ingresar nuevo empleado")]
                   ),
                 ]
               ),
@@ -31293,7 +31296,7 @@ var render = function () {
                 ],
                 staticClass: "form-control",
                 attrs: {
-                  type: "number",
+                  type: "text",
                   id: "direccion",
                   placeholder: "Direccion del empleado",
                 },
@@ -31323,7 +31326,7 @@ var render = function () {
                 ],
                 staticClass: "form-control",
                 attrs: {
-                  type: "number",
+                  type: "text",
                   id: "foto",
                   placeholder: "foto del empleado",
                 },
@@ -31349,8 +31352,8 @@ var render = function () {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.empleado.nombre,
-                      expression: "empleado.nombre",
+                      value: _vm.empleado.id_sucursal,
+                      expression: "empleado.id_sucursal",
                     },
                   ],
                   staticClass: "form-select",
@@ -31366,7 +31369,7 @@ var render = function () {
                         })
                       _vm.$set(
                         _vm.empleado,
-                        "nombre",
+                        "id_sucursal",
                         $event.target.multiple
                           ? $$selectedVal
                           : $$selectedVal[0]

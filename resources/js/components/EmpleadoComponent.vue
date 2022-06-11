@@ -65,23 +65,23 @@
                     </div>
                     <div class="my-4">
                         <label for="direccion">Direccion</label>
-                        <input v-model="empleado.direccion" type="number" class="form-control" id="direccion" placeholder="Direccion del empleado">
+                        <input v-model="empleado.direccion" type="text" class="form-control" id="direccion" placeholder="Direccion del empleado">
                     </div>
                     <div class="my-4">
                         <label for="foto">Foto</label>
-                        <input v-model="empleado.foto" type="number" class="form-control" id="foto" placeholder="foto del empleado">
+                        <input v-model="empleado.foto" type="text" class="form-control" id="foto" placeholder="foto del empleado">
                     </div>
                     <div class="my-4">
                         <label>Sucursal</label>
-                        <select v-model="empleado.nombre" class="form-select">
-                            <option
-                                v-for="sucursal in sucursals"
+                        <select v-model="empleado.id_sucursal" class="form-select">
+                            <option v-for="sucursal in sucursals"
                                 :key="sucursal.id"
                                 :value="sucursal.nombre"
                             >
-                                {{ sucursal.nombre }}
+                                {{sucursal.nombre}}
                             </option>
                         </select>
+                        
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -103,7 +103,8 @@ export default {
                 edad:18,
                 sueldo_base:0,
                 direccion:'',
-                foto:''
+                foto:'',
+                id_sucursal:'',
             },
             id:0,
             modificar:true,
@@ -119,13 +120,13 @@ export default {
     methods: {
         async initialize() {
             this.loading = true;
-            res = await axios.get('/sucursal');
-            this.sucursals = res.data.sucursals;
-
+            const res = await axios.get('/sucursal');
+            this.sucursals = res.data;
+            /*
             if (this.sucursals.length > 0) {
-                this.empleado.nombre = res.data.sucursals[0].nombre;
+                this.empleado.id_sucursal = res.data[0].id;
             }
-
+            */
             this.loading = false;
         },
         async listar() {
